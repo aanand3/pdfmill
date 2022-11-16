@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "358327035902",
+    "project_id": "pdfmill-c9176",
+    "storage_bucket": "pdfmill-c9176.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358327035902:android:48f5312162723e96cfc2af",
+        "android_client_info": {
+          "package_name": "com.ap.pdfmill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358327035902-uddvv1fn09q39ton35mnbq5mv5mc2l5q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ap.pdfmill",
+            "certificate_hash": "012c80503234119dd3e5f3e9f06f8032dbed96df"
+          }
+        },
+        {
+          "client_id": "358327035902-678nefde0o20p0oo40lnli7719tkhlev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO5tlZkncVZfiMPCsY3CMkNA8YVa4RG7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358327035902-678nefde0o20p0oo40lnli7719tkhlev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
