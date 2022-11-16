@@ -5,12 +5,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.ap.pdfmill.databinding.ActivityMainBinding
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
-import edu.utap.firebaseauth.AuthInit
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
+    // launcher for the AuthInit activity; waits for result
     // See: https://developer.android.com/training/basics/intents/result
     private val signInLauncher =
         registerForActivityResult(FirebaseAuthUIActivityResultContract()) {
@@ -43,12 +43,6 @@ class MainActivity : AppCompatActivity() {
         binding.loginBut.setOnClickListener {
             // XXX Write me.
             AuthInit(viewModel, signInLauncher)
-        }
-        binding.setDisplayName.setOnClickListener {
-            // XXX Write me.
-            if (binding.displayNameET.text.toString().isNotBlank()) {
-                AuthInit.setDisplayName(binding.displayNameET.text.toString(), viewModel)
-            }
         }
 
         AuthInit(viewModel, signInLauncher)

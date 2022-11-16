@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.ap.pdfmill'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.ap.pdfmill"
         minSdk 32
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -34,6 +34,9 @@ android {
     buildFeatures {
         viewBinding true
     }
+    packagingOptions {
+        resources.excludes.add('META-INF/DEPENDENCIES')
+    }
 }
 
 dependencies {
@@ -52,7 +55,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx' // firebase auth
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
 
-    implementation 'androidx.fragment:fragment-ktx:1.5.3'
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
