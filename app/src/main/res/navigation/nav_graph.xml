@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HomePageFragment">
+
+    <fragment
+        android:id="@+id/HomePageFragment"
+        android:name="com.ap.pdfmill.HomePageFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/home_page">
+
+        <action
+            android:id="@+id/action_HomePageFragment_to_Da31Fragment"
+            app:destination="@id/Da31Fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out">
+            <argument
+                android:name="index"
+                app:argType="integer"
+                />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/Da31Fragment"
+        android:name="com.ap.pdfmill.DA31Fragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/da_31">
+        <argument
+            android:name="index"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>
