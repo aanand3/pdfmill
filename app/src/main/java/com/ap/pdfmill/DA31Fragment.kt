@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.ap.pdfmill.databinding.Da31Binding
 
 class DA31Fragment : Fragment() {
@@ -24,12 +26,15 @@ class DA31Fragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    val mainActivity = requireActivity() as MainActivity
+//    val mainActivity = requireActivity() as MainActivity
 
+    binding.backButton.setOnClickListener {
+      findNavController().popBackStack()
+    }
+  }
 
-//    override fun onDestroyView() {
-//      _binding = null
-//      super.onDestroyView()
-//    }
+  override fun onDestroyView() {
+    _binding = null
+    super.onDestroyView()
   }
 }
