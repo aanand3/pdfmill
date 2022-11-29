@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.ap.pdfmill.databinding.ActivityMainBinding
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        PDFBoxResourceLoader.init(applicationContext);
 
         AuthInit(viewModel, signInLauncher)
     }

@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/Da31Fragment"
-        android:name="com.ap.pdfmill.DA31Fragment"
+        android:name="com.ap.pdfmill.da31.Da31Fragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/da_31">
         <argument
