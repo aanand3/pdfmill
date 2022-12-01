@@ -10,10 +10,19 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ap.pdfmill.databinding.HomePageBinding
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.api.client.extensions.android.http.AndroidHttp
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential
+import com.google.api.client.http.FileContent
+import com.google.api.client.json.jackson2.JacksonFactory
+import com.google.api.services.drive.Drive
+import com.google.api.services.drive.DriveScopes
+import java.io.File
 
 class HomePageFragment : Fragment() {
   private var _binding: HomePageBinding? = null
   private val viewModel: MainViewModel by viewModels()
+  lateinit var mDrive: Drive
 
   // launcher for the AuthInit activity; waits for result
   // See: https://developer.android.com/training/basics/intents/result
@@ -64,8 +73,6 @@ class HomePageFragment : Fragment() {
       val bundle = bundleOf("index" to 0)
       findNavController().navigate(R.id.Da31Fragment, bundle)
     }
-
-
   }
 
   override fun onDestroyView() {
