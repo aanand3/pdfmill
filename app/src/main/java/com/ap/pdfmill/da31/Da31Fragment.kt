@@ -1,6 +1,9 @@
 package com.ap.pdfmill.da31
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.ap.pdfmill.R
 import com.ap.pdfmill.databinding.Da31Binding
+import java.io.File
+import java.io.FileOutputStream
 
 class Da31Fragment : Fragment() {
   private var _binding: Da31Binding? = null
@@ -33,9 +38,14 @@ class Da31Fragment : Fragment() {
     }
 
     binding.generateButton.setOnClickListener {
-      activity?.resources?.openRawResource(R.raw.da31).use { inputStream ->
+      activity?.resources?.openRawResource(R.raw.da4856).use { inputStream ->
         val da31 = parseFormFields()
         val byteArrayOutputStream = exportPdf(inputStream, da31)
+
+        val filename = "myfile"
+        context?.openFileOutput(filename, MODE_PRIVATE).use {
+          it?.write(byteArrayOutputStream.toByteArray())
+        }
       }
     }
   }
@@ -45,7 +55,7 @@ class Da31Fragment : Fragment() {
     super.onDestroyView()
   }
 
-  fun parseFormFields() =
+  private fun parseFormFields() =
     Da31(
       name = binding.nameET.text.toString(),
       date = binding.dateET.text.toString(),
