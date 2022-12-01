@@ -13,7 +13,7 @@
 
         <action
             android:id="@+id/action_HomePageFragment_to_Da31Fragment"
-            app:destination="@id/Da31Fragment"
+            app:destination="@id/nav_da4856"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out">
             <argument
@@ -23,13 +23,9 @@
         </action>
     </fragment>
     <fragment
-        android:id="@+id/Da31Fragment"
-        android:name="com.ap.pdfmill.da31.Da31Fragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/da_31">
-        <argument
-            android:name="index"
-            app:argType="integer"
-            android:defaultValue="0" />
+        android:id="@+id/nav_da4856"
+        android:name="com.ap.pdfmill.da4856.Da4856Fragment"
+        android:label="DA 4856"
+        tools:layout="@layout/da_4856">
     </fragment>
 </navigation>

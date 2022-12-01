@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/nameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Last, First MI"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/dateET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/rankET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Rank"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/dodIdET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="DODID"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/organizationET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Organization"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/counselorTitleET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Counselor Title"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/purposeET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Purpose"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/keyPointsET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Key Points"
+        android:inputType="textMultiLine"
+        android:minLines="5" />
+
+    <EditText
+        android:id="@+id/planOfActionET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Plan of Action"
+        android:inputType="textMultiLine"
+        android:minLines="5" />
+
+    <Button
+        android:id="@+id/generateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Generate PDF" />
+</LinearLayout>

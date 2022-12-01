@@ -1,21 +1,25 @@
-package com.ap.pdfmill.da31
+package com.ap.pdfmill.da4856
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.ap.pdfmill.R
-import com.ap.pdfmill.databinding.Da31Binding
-import java.io.File
-import java.io.FileOutputStream
+import com.ap.pdfmill.databinding.Da4856Binding
 
-class Da31Fragment : Fragment() {
-  private var _binding: Da31Binding? = null
+
+class Da4856Fragment : Fragment() {
+  companion object {
+    fun newInstance(): Da4856Fragment {
+      return Da4856Fragment()
+    }
+  }
+
+  private var _binding: Da4856Binding? = null
 
   // This property is only valid between onCreateView and
   // onDestroyView.
@@ -25,17 +29,12 @@ class Da31Fragment : Fragment() {
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    _binding = Da31Binding.inflate(inflater, container, false)
+    _binding = Da4856Binding.inflate(inflater, container, false)
     return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-//    val mainActivity = requireActivity() as MainActivity
-
-    binding.backButton.setOnClickListener {
-      findNavController().popBackStack()
-    }
 
     binding.generateButton.setOnClickListener {
       activity?.resources?.openRawResource(R.raw.da4856).use { inputStream ->
@@ -47,6 +46,7 @@ class Da31Fragment : Fragment() {
           it?.write(byteArrayOutputStream.toByteArray())
         }
       }
+      findNavController().popBackStack()
     }
   }
 
@@ -56,16 +56,15 @@ class Da31Fragment : Fragment() {
   }
 
   private fun parseFormFields() =
-    Da31(
+    Da4856(
       name = binding.nameET.text.toString(),
       date = binding.dateET.text.toString(),
       dodId = binding.dodIdET.text.toString(),
       rank = binding.rankET.text.toString(),
-      leaveAddress = binding.leaveAddressET.text.toString(),
-      orgInfo = binding.orgInfoET.text.toString(),
-      leaveBalance = binding.leaveBalanceET.text.toString(),
-      startDate = binding.startDateET.text.toString(),
-      daysRequested = binding.daysRequestedET.text.toString()
+      organization = binding.organizationET.text.toString(),
+      counselorTitle = binding.counselorTitleET.text.toString(),
+      purpose = binding.purposeET.text.toString(),
+      planOfAction = binding.planOfActionET.text.toString(),
     )
 
 }

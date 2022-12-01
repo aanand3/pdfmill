@@ -1,9 +1,6 @@
 package com.ap.pdfmill
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -11,17 +8,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.ap.pdfmill.databinding.ActivityMainBinding
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.api.client.extensions.android.http.AndroidHttp
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential
-import com.google.api.client.http.FileContent
-import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.drive.Drive
-import com.google.api.services.drive.DriveScopes
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -43,50 +31,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_host_fragment_content_main, R.id.nav_da4856))
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         PDFBoxResourceLoader.init(applicationContext);
 
         AuthInit(viewModel, signInLauncher)
-
-        mDrive = getDriveService(this)!!
-        val addAttachment = findViewById<Button>(R.id.uploadBut)
-        addAttachment.setOnClickListener {
-            GlobalScope.async(Dispatchers.IO) {
-                val file = applicationContext.getFileStreamPath("myfile")
-
-                val gfile = com.google.api.services.drive.model.File()
-                gfile.name = "myfile"
-                val fileContent = FileContent("application/pdf", file)
-
-                Log.d("file", "uploading")
-                mDrive.Files().create(gfile, fileContent).execute()
-                Log.d("file", "uploaded")
-            }
-        }
-//            GlobalScope.async(Dispatchers.IO) {
-//                uploadFileToGDrive(this@MainActivity)
-//            }
     }
 
-    private fun getDriveService(context: Context): Drive? {
-        GoogleSignIn.getLastSignedInAccount(context).let { googleAccount ->
-            val credential = GoogleAccountCredential.usingOAuth2(
-                context, listOf(DriveScopes.DRIVE_FILE)
-            )
-            if (googleAccount != null) {
-                credential.selectedAccount = googleAccount.account!!
-            }
-            return Drive.Builder(
-                AndroidHttp.newCompatibleTransport(),
-                JacksonFactory.getDefaultInstance(),
-                credential
-            )
-                .setApplicationName(R.string.app_name.toString())
-                .build()
-        }
-    }
 
 //private fun uploadFileToGDrive(context: Context) {
 //    mDrive.let { googleDriveService ->

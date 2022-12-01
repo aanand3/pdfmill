@@ -9,24 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/displayNameET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/setDisplayName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set display name" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -60,36 +42,15 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mr. Nobody.  This will change when user logs in"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/userEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email empty.  This will change when user logs in"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/userUid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Uid empty.  This will change when user logs in"
-        android:textSize="18sp" />
-
     <Space
         android:layout_width="0dp"
         android:layout_height="20dp" />
 
     <Button
-        android:id="@+id/da31Button"
+        android:id="@+id/da4856Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DA 31" />
+        android:text="DA 4856" />
 
     <Button
         android:id="@+id/uploadBut"
