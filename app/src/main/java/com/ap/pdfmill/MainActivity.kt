@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // set up nav bar
+        // todo: there's a back arrow on the top level for some reason, and none of the other back arrows work - this is weird bc the actual system's up arrow works
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(emptySet())
         setupActionBarWithNavController(navController, appBarConfiguration)

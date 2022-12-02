@@ -79,6 +79,7 @@ class HomePageFragment : Fragment() {
                     LENGTH_LONG
                 ).show()
             } else {
+                // todo: this spinner is not really working but it might be a slow emulator thing
                 binding.idPBLoading.isVisible = true
                 MainScope().launch {
                     val defer = async(Dispatchers.IO) {
