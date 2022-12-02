@@ -28,4 +28,10 @@
         android:label="DA 4856"
         tools:layout="@layout/da_4856">
     </fragment>
+    <fragment
+        android:id="@+id/nav_signature_pad"
+        android:name="com.ap.pdfmill.signature.SignaturePadFragment"
+        android:label="Signature"
+        tools:layout="@layout/signature_pad">
+    </fragment>
 </navigation>

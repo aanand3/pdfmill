@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ap.pdfmill.databinding.HomePageBinding
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -18,21 +20,23 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.http.FileContent
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.drive.Drive
-import com.google.api.services.drive.DriveScopes
+import com.google.api.services.drive.DriveScopes.DRIVE_FILE
 import com.google.api.services.drive.model.File
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class HomePageFragment : Fragment() {
     private var _binding: HomePageBinding? = null
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by activityViewModels()
     lateinit var mDrive: Drive
+    private var fileName = "invalid"
 
     // launcher for the AuthInit activity; waits for result
     // See: https://developer.android.com/training/basics/intents/result
     private val signInLauncher =
-        registerForActivityResult(FirebaseAuthUIActivityResultContract()) {
-            viewModel.updateUser()
-        }
+        registerForActivityResult(FirebaseAuthUIActivityResultContract()) {}
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -53,33 +57,48 @@ class HomePageFragment : Fragment() {
             viewModel.signOut()
         }
         binding.loginBut.setOnClickListener {
-            AuthInit(viewModel, signInLauncher)
+            AuthInit(signInLauncher)
         }
 
         binding.da4856Button.setOnClickListener {
             findNavController().navigate(R.id.nav_da4856)
         }
 
+        viewModel.observeFileName().observe(viewLifecycleOwner) {
+            fileName = it
+        }
+
         mDrive = getDriveService(requireContext())!!
 
         binding.uploadBut.setOnClickListener {
             Log.d("file", "upload button pressed")
-            MainScope().launch {
-                val defer = async(Dispatchers.IO) {
-                    uploadToDrive()
-                }
-                defer.await()
+            if (fileName == "invalid") {
                 Toast.makeText(
-                    context,
-                    "Uploaded to Drive!",
-                    Toast.LENGTH_LONG
+                    activity,
+                    "You need to fill in a file before uploading!",
+                    LENGTH_LONG
                 ).show()
+            } else {
+                binding.idPBLoading.isVisible = true
+                MainScope().launch {
+                    val defer = async(Dispatchers.IO) {
+                        uploadToDrive()
+                    }
+                    defer.await()
+                    Toast.makeText(
+                        context,
+                        "Uploaded to Drive!",
+                        LENGTH_LONG
+                    ).show()
+                }
+                binding.idPBLoading.isVisible = false
             }
+
         }
     }
 
     private fun uploadToDrive() {
-        val fileName = viewModel.getFileName()
+        Log.d("filename", fileName)
         val file = context?.getFileStreamPath(fileName)
 
         val gfile = File()
@@ -87,13 +106,22 @@ class HomePageFragment : Fragment() {
         val fileContent = FileContent("application/pdf", file)
 
         Log.d("file", "uploading")
-        mDrive.Files().create(gfile, fileContent).execute()
+        try {
+            mDrive.Files().create(gfile, fileContent).execute()
+        } catch (e: Exception) {
+            Log.e("error: ", e.stackTraceToString())
+            Toast.makeText(
+                activity,
+                "File failed to upload",
+                LENGTH_LONG
+            ).show()
+        }
     }
 
     private fun getDriveService(context: Context): Drive? {
         GoogleSignIn.getLastSignedInAccount(context).let { googleAccount ->
             val credential = GoogleAccountCredential.usingOAuth2(
-                context, listOf(DriveScopes.DRIVE_FILE)
+                context, listOf(DRIVE_FILE)
             )
             if (googleAccount != null) {
                 credential.selectedAccount = googleAccount.account!!

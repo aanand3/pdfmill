@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 // https://firebase.google.com/docs/auth/android/firebaseui
 // https://github.com/firebase/FirebaseUI-Android/blob/master/auth/README.md#google-1
-class AuthInit(viewModel: MainViewModel, signInLauncher: ActivityResultLauncher<Intent>) {
+class AuthInit(signInLauncher: ActivityResultLauncher<Intent>) {
     init {
         val user = FirebaseAuth.getInstance().currentUser
         if (user == null) {
@@ -27,7 +27,6 @@ class AuthInit(viewModel: MainViewModel, signInLauncher: ActivityResultLauncher<
                 .also { signInLauncher.launch(it) }
         } else {
             Log.d(javaClass.name, "user logged in: ${user.displayName} | ${user.email}")
-            viewModel.updateUser()
         }
     }
 }

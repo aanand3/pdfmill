@@ -14,15 +14,11 @@ import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    lateinit var mDrive: Drive
-    private val viewModel: MainViewModel by viewModels()
 
     // launcher for the AuthInit activity; waits for result
     // See: https://developer.android.com/training/basics/intents/result
     private val signInLauncher =
-        registerForActivityResult(FirebaseAuthUIActivityResultContract()) {
-            viewModel.updateUser()
-        }
+        registerForActivityResult(FirebaseAuthUIActivityResultContract()) {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,12 +26,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // set up nav bar
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_host_fragment_content_main, R.id.nav_da4856))
+        appBarConfiguration = AppBarConfiguration(emptySet())
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        // load the context into PDFBox
         PDFBoxResourceLoader.init(applicationContext);
 
-        AuthInit(viewModel, signInLauncher)
+        // start the login flow
+        AuthInit(signInLauncher)
     }
 }

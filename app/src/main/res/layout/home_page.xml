@@ -4,7 +4,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="8dp"
     app:layout_constraintTop_toTopOf="parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to PDF Mill!"
+        android:textSize="32sp" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This app serves as a proof-of-concept:"
+        android:textSize="24sp" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Can we fill, sign, and save a PDF from just a mobile device?"
+        android:textAlignment="viewEnd"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="First, complete a form: "
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/da4856Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📄 DA 4856 - Developmental Counseling" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="📄 DA 31 - Leave (coming soon!)" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Then, you can upload it to Google Drive:"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/uploadBut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="☁️ Upload" />
+
+    <ProgressBar
+        android:id="@+id/idPBLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:visibility="gone" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,49 +94,23 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
         <Button
             android:id="@+id/loginBut"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Login" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:text="👋 Login" />
 
         <Button
             android:id="@+id/logoutBut"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Logout" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:text="✌ Logout" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="20dp" />
-
-    <Button
-        android:id="@+id/da4856Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DA 4856" />
-
-    <Button
-        android:id="@+id/uploadBut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Upload" />
 </LinearLayout>

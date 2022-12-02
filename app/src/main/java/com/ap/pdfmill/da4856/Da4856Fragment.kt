@@ -2,26 +2,23 @@ package com.ap.pdfmill.da4856
 
 import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ap.pdfmill.MainViewModel
 import com.ap.pdfmill.R
 import com.ap.pdfmill.databinding.Da4856Binding
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 
 class Da4856Fragment : Fragment() {
-  companion object {
-    fun newInstance(): Da4856Fragment {
-      return Da4856Fragment()
-    }
-  }
-
   private var _binding: Da4856Binding? = null
-  private val viewModel: MainViewModel by viewModels()
+  private val viewModel: MainViewModel by activityViewModels()
 
   // This property is only valid between onCreateView and
   // onDestroyView.
@@ -43,13 +40,14 @@ class Da4856Fragment : Fragment() {
         val da31 = parseFormFields()
         val byteArrayOutputStream = exportPdf(inputStream, da31)
 
-        val filename = binding.nameET.text.toString() + "-DA4856" + binding.dateET.text.toString()
+        val filename = "DA4856 " + ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+        Log.d("filename", filename)
         viewModel.setFileName(filename)
         context?.openFileOutput(filename, MODE_PRIVATE).use {
           it?.write(byteArrayOutputStream.toByteArray())
         }
       }
-      findNavController().popBackStack()
+      findNavController().navigate(R.id.nav_signature_pad)
     }
   }
 
