@@ -50,22 +50,14 @@ class HomePageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.logoutBut.setOnClickListener {
-            // XXX Write me.
             viewModel.signOut()
         }
         binding.loginBut.setOnClickListener {
-            // XXX Write me.
             AuthInit(viewModel, signInLauncher)
         }
 
         binding.da4856Button.setOnClickListener {
             findNavController().navigate(R.id.nav_da4856)
-//            parentFragmentManager.apply {
-//                beginTransaction()
-//                    .add(Da4856Fragment.newInstance(), "da4856")
-//                    .addToBackStack("da4856")
-//                    .commit()
-//            }
         }
 
         mDrive = getDriveService(requireContext())!!
@@ -87,10 +79,11 @@ class HomePageFragment : Fragment() {
     }
 
     private fun uploadToDrive() {
-        val file = context?.getFileStreamPath("myfile")
+        val fileName = viewModel.getFileName()
+        val file = context?.getFileStreamPath(fileName)
 
         val gfile = File()
-        gfile.name = "myfile"
+        gfile.name = fileName
         val fileContent = FileContent("application/pdf", file)
 
         Log.d("file", "uploading")

@@ -38,47 +38,4 @@ class MainActivity : AppCompatActivity() {
 
         AuthInit(viewModel, signInLauncher)
     }
-
-
-//private fun uploadFileToGDrive(context: Context) {
-//    mDrive.let { googleDriveService ->
-//        lifecycleScope.launch {
-//            try {
-//                val file = context.getFileStreamPath("myfile")
-//
-////            File("myfile")
-////          context.openFileInput("myfile").use {
-////            file.writeBytes(it.readBytes())
-////          }
-//
-//                val gfile = com.google.api.services.drive.model.File()
-//                gfile.name = "myfile"
-//                val fileContent = FileContent("application/pdf", file)
-//                var fileid = ""
-//
-//                withContext(Dispatchers.Main) {
-//                    withContext(Dispatchers.IO) {
-//                        launch {
-//                            Log.d("file", "uploading")
-//                            googleDriveService.Files().create(gfile, fileContent).execute()
-//                            Log.d("file", "uploaded")
-//                        }
-//                    }
-//                }
-//            } catch (userAuthEx: UserRecoverableAuthIOException) {
-//                startActivity(
-//                    userAuthEx.intent
-//                )
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//                Log.d("asdf", e.toString())
-//                Toast.makeText(
-//                    context,
-//                    "Some Error Occured in Uploading Files" + e.toString(),
-//                    Toast.LENGTH_LONG
-//                ).show()
-//            }
-//        }
-//    }
-//}
 }

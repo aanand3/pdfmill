@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.ap.pdfmill.MainViewModel
 import com.ap.pdfmill.R
 import com.ap.pdfmill.databinding.Da4856Binding
 
@@ -20,6 +21,7 @@ class Da4856Fragment : Fragment() {
   }
 
   private var _binding: Da4856Binding? = null
+  private val viewModel: MainViewModel by viewModels()
 
   // This property is only valid between onCreateView and
   // onDestroyView.
@@ -41,7 +43,8 @@ class Da4856Fragment : Fragment() {
         val da31 = parseFormFields()
         val byteArrayOutputStream = exportPdf(inputStream, da31)
 
-        val filename = "myfile"
+        val filename = binding.nameET.text.toString() + "-DA4856" + binding.dateET.text.toString()
+        viewModel.setFileName(filename)
         context?.openFileOutput(filename, MODE_PRIVATE).use {
           it?.write(byteArrayOutputStream.toByteArray())
         }

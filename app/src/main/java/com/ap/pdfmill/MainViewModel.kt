@@ -9,6 +9,7 @@ class MainViewModel : ViewModel() {
     private var displayName = MutableLiveData("Uninitialized")
     private var email = MutableLiveData("Uninitialized")
     private var uid = MutableLiveData("Uninitialized")
+    private var fileName = "";
 
     private fun userLogout() {
         displayName.postValue("No user")
@@ -23,6 +24,14 @@ class MainViewModel : ViewModel() {
             email.postValue(it.email)
             uid.postValue(it.uid)
         }
+    }
+
+    fun getFileName(): String {
+        return fileName;
+    }
+
+    fun setFileName(newFileName: String){
+        fileName = newFileName
     }
 
     fun observeDisplayName(): LiveData<String> {
