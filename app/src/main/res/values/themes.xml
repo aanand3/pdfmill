@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Pdfmill" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#5967B3</item>
+        <item name="colorPrimary">#939EDD</item>
         <item name="colorPrimaryVariant">#683F51B5</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->

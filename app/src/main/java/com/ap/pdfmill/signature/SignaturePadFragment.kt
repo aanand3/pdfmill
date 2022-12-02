@@ -1,23 +1,34 @@
 package com.ap.pdfmill.signature
 
 import android.R
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.ap.pdfmill.MainActivity
 import com.ap.pdfmill.MainViewModel
+import com.ap.pdfmill.R.id.nav_host_fragment_content_main
+import com.ap.pdfmill.da4856.Da4856
+import com.ap.pdfmill.da4856.exportPdf
 import com.ap.pdfmill.databinding.SignaturePadBinding
 import com.github.gcacace.signaturepad.views.SignaturePad
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
 
 
 class SignaturePadFragment : Fragment() {
     private var _binding: SignaturePadBinding? = null
     private val viewModel: MainViewModel by activityViewModels()
+    lateinit var da4856: Da4856
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -33,6 +44,10 @@ class SignaturePadFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.observeDa4856().observe(viewLifecycleOwner) {
+            da4856 = it
+        }
 
         binding.signaturePad.setOnSignedListener(object : SignaturePad.OnSignedListener {
             override fun onStartSigning() {
@@ -58,11 +73,22 @@ class SignaturePadFragment : Fragment() {
         }
 
         binding.saveButton.setOnClickListener {
+            activity?.resources?.openRawResource(com.ap.pdfmill.R.raw.da4856).use { inputStream ->
+                val byteArrayOutputStream = exportPdf(inputStream, da4856, binding.signaturePad.signatureBitmap)
+
+                val filename = "DA4856 " + ZonedDateTime.now().format(ISO_LOCAL_DATE_TIME)
+                Log.d("filename", filename)
+                viewModel.setFileName(filename)
+                context?.openFileOutput(filename, MODE_PRIVATE).use {
+                    it?.write(byteArrayOutputStream.toByteArray())
+                }
+            }
             Toast.makeText(
                 activity,
-                "Saved",
-                Toast.LENGTH_LONG
+                "Saved!",
+                LENGTH_LONG
             ).show()
+            findNavController().navigate(nav_host_fragment_content_main)
         }
     }
 

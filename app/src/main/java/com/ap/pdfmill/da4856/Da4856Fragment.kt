@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ap.pdfmill.MainViewModel
 import com.ap.pdfmill.R
+import com.ap.pdfmill.R.id.nav_signature_pad
 import com.ap.pdfmill.databinding.Da4856Binding
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -36,18 +37,8 @@ class Da4856Fragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     binding.generateButton.setOnClickListener {
-      activity?.resources?.openRawResource(R.raw.da4856).use { inputStream ->
-        val da31 = parseFormFields()
-        val byteArrayOutputStream = exportPdf(inputStream, da31)
-
-        val filename = "DA4856 " + ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-        Log.d("filename", filename)
-        viewModel.setFileName(filename)
-        context?.openFileOutput(filename, MODE_PRIVATE).use {
-          it?.write(byteArrayOutputStream.toByteArray())
-        }
-      }
-      findNavController().navigate(R.id.nav_signature_pad)
+      viewModel.setDa4856(parseFormFields())
+      findNavController().navigate(nav_signature_pad)
     }
   }
 

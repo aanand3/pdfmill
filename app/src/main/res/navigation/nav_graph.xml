@@ -8,11 +8,11 @@
     <fragment
         android:id="@+id/HomePageFragment"
         android:name="com.ap.pdfmill.HomePageFragment"
-        android:label="@string/first_fragment_label"
+        android:label="Home"
         tools:layout="@layout/home_page">
 
         <action
-            android:id="@+id/action_HomePageFragment_to_Da31Fragment"
+            android:id="@+id/action_HomePageFragment_to_Da4856Fragment"
             app:destination="@id/nav_da4856"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out">
@@ -27,11 +27,17 @@
         android:name="com.ap.pdfmill.da4856.Da4856Fragment"
         android:label="DA 4856"
         tools:layout="@layout/da_4856">
+        <action
+            android:id="@+id/action_nav_da4856_to_nav_signature_pad"
+            app:destination="@id/nav_signature_pad" />
     </fragment>
     <fragment
         android:id="@+id/nav_signature_pad"
         android:name="com.ap.pdfmill.signature.SignaturePadFragment"
         android:label="Signature"
         tools:layout="@layout/signature_pad">
+        <action
+            android:id="@+id/action_nav_signature_pad_to_HomePageFragment"
+            app:destination="@id/HomePageFragment" />
     </fragment>
 </navigation>
