@@ -15,6 +15,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ap.pdfmill.MainActivity
 import com.ap.pdfmill.MainViewModel
+import com.ap.pdfmill.R.id.HomePageFragment
 import com.ap.pdfmill.R.id.nav_host_fragment_content_main
 import com.ap.pdfmill.da4856.Da4856
 import com.ap.pdfmill.da4856.exportPdf
@@ -88,7 +89,7 @@ class SignaturePadFragment : Fragment() {
                 "Saved!",
                 LENGTH_LONG
             ).show()
-            findNavController().navigate(nav_host_fragment_content_main)
+            findNavController().navigate(HomePageFragment)
         }
     }
 

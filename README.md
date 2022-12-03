@@ -8,7 +8,19 @@
 
 #### PDFMill is an app built for filling, signing, and exporting PDFs from a mobile device.
 
-TODO: Davon can you add screenshots
+#### Home Screen
+![image](https://user-images.githubusercontent.com/77517056/205418373-39af7f79-1b60-4042-8f93-a634fe0d61ff.png)
+#### Empty form to fill in data
+![image](https://user-images.githubusercontent.com/77517056/205418425-ba04818f-c2de-45c2-a130-01c95bebb15a.png)
+#### Fill out form completely
+![image](https://user-images.githubusercontent.com/77517056/205418447-71b21044-ed3e-41a0-adc2-0951fd1a5067.png)
+#### Screen that requires your signature
+![image](https://user-images.githubusercontent.com/77517056/205418474-f3ae0aae-4a09-4699-8bca-b5288d78ddc7.png)
+#### Screen that displays toast saying that the PDF has been saved
+![image](https://user-images.githubusercontent.com/77517056/205418494-3de9e6f0-f6ec-4c5d-a0c2-a726888c11e2.png)
+#### View confirming that the PDF file has been saved to the User's GoogleDrive
+![image](https://user-images.githubusercontent.com/77517056/205418532-bac282d1-92d6-4f0d-b194-0aeab5e3de3b.png)
+
 
 ### APIs
 
@@ -87,13 +99,28 @@ PDF. To do so, we used some simple cross-multiplication to bring it down to size
 
  Discuss the most important or interesting thing you learned doing your
 project.
- 
+ The most important thing I learned was the utilization of PDFBox. The reason why it is the most important
+thing that I have learned is due to my frequent use of filling out and distributing the same pdf. Its very convenient 
+because I don't actually have to find time to get a computer to fill one out
+
 Discuss the most difficult challenge you overcame and/or your most interesting debugging
 story.
+The most difficult challenge that I overcame was finding the right resource to implement uploading to 
+Google Drive. There are so many different ways to implement it, that it took more time than I would've
+like to.
 
 If necessary, briefly tell us how to build and run your project. 
+In order to run the project you must have an Android emulator setup.
 
 Include details about how to set back end services (if you use them). In the common case, we will rely on your demo, but just in case we have an issue, we'd like some tips. For masters students, please submit by zipping your
 project and submitting to canvas.
+n/a
+
+#### Lines of code
+XML - 576
+Kotlin - 454
+
+#### Code Frequency
+![image](https://user-images.githubusercontent.com/77517056/205419214-31ba1963-cd72-4a6a-b4a2-9e20175414b6.png)
 
 Submit your final code to this new project
